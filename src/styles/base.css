@@ -19,11 +19,11 @@ html.lenis body {
 
 body {
   margin: 0;
-  background: var(--midnight);
-  color: var(--midnight);
+  background: var(--surface);
+  color: var(--fg);
   font-family: var(--font-text);
   font-size: var(--step-0);
-  line-height: 1.55;
+  line-height: var(--lh-body);
   font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
@@ -74,8 +74,9 @@ button {
   cursor: pointer;
 }
 
+/* Focus ring color comes from the surface, so it is visible on every ground */
 :focus-visible {
-  outline: 3px solid var(--sun);
+  outline: var(--focus-w) solid var(--focus);
   outline-offset: 3px;
 }
 
@@ -95,12 +96,13 @@ button {
 
 .skip-link {
   position: fixed;
-  top: 12px;
-  left: 12px;
-  z-index: 100;
+  top: var(--space-xs);
+  left: var(--space-xs);
+  z-index: var(--z-skip);
   padding: 0.6em 1em;
-  background: var(--sun);
-  color: var(--midnight);
+  border-radius: var(--radius-pill);
+  background: var(--cta);
+  color: var(--on-cta);
   font-family: var(--font-display);
   transform: translateY(-200%);
 }
@@ -108,109 +110,133 @@ button {
   transform: none;
 }
 
-/* Display type */
+/* ───────── Surfaces: paint the ground, roles come from tokens.css ───────── */
+.surface--deep,
+.surface--cobalt,
+.surface--frost,
+.surface--white,
+.surface--sky {
+  background: var(--surface);
+  color: var(--fg);
+}
+
+/* ───────── Type ───────── */
 .display {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-stretch: 100%;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
+  font-weight: var(--weight-heavy);
+  font-stretch: var(--wdth-normal);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-tight);
   text-wrap: balance;
 }
 
 .h-section {
-  font-size: clamp(2.4rem, 11vw, var(--step-6));
+  font-size: var(--display-l);
 }
 
 .label {
   font-family: var(--font-display);
   font-size: var(--step--1);
-  font-weight: 500;
-  font-stretch: 110%;
-  letter-spacing: 0.01em;
+  font-weight: var(--weight-medium);
+  font-stretch: var(--wdth-wide);
+  letter-spacing: var(--track-label);
 }
 
 .lede {
   font-size: var(--step-1);
-  line-height: 1.4;
+  line-height: var(--lh-lede);
   max-width: 34ch;
 }
 
 .prose {
-  max-width: 68ch;
+  max-width: var(--measure);
 }
 
-/* Layout */
+.muted {
+  color: var(--fg-muted);
+}
+
+/* Blinking prompt caret, shared by every "typed prompt" in the page */
+.caret::after {
+  content: '';
+  display: inline-block;
+  width: 0.55ch;
+  height: 1em;
+  margin-left: 0.15em;
+  vertical-align: -0.15em;
+  background: var(--accent);
+  animation: caret 0.8s steps(1) infinite;
+}
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ───────── Layout ───────── */
 .container {
   width: 100%;
   padding-inline: var(--gutter);
   margin-inline: auto;
-  max-width: 1680px;
+  max-width: var(--container-max);
 }
 
 .grid-12 {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  column-gap: 16px;
+  column-gap: var(--grid-gap);
 }
 
 @media (min-width: 1024px) {
   .grid-12 {
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: 24px;
   }
 }
 
 .section {
   position: relative;
-  padding-block: var(--section-y);
+  padding-block: var(--space-section);
 }
 
-/* Surfaces */
-.surface--cobalt {
-  background: var(--cobalt);
-  color: var(--white);
-}
-.surface--lilac {
-  background: var(--lilac);
-  color: var(--midnight);
-}
-.surface--midnight {
-  background: var(--midnight);
-  color: var(--white);
-}
-
-/* Buttons */
+/* ───────── Buttons ───────── */
 .btn {
   --btn-bg: transparent;
-  --btn-fg: currentColor;
+  --btn-fg: var(--fg);
+  --btn-border: currentColor;
   display: inline-flex;
   align-items: center;
   gap: 0.6em;
-  min-height: 48px;
+  min-height: var(--btn-h);
   padding: 0.75em 1.4em;
-  border: 1.5px solid currentColor;
-  border-radius: 999px;
+  border: var(--border-w) solid var(--btn-border);
+  border-radius: var(--radius-pill);
   background: var(--btn-bg);
   color: var(--btn-fg);
   font-family: var(--font-display);
   font-size: var(--step-0);
-  font-weight: 650;
-  font-stretch: 105%;
+  font-weight: var(--weight-semibold);
+  font-stretch: var(--wdth-normal);
   line-height: 1;
   white-space: nowrap;
   text-decoration: none;
   transition:
-    transform 0.25s var(--ease-out),
-    background-color 0.25s var(--ease-out),
-    color 0.25s var(--ease-out);
+    transform var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
   -webkit-tap-highlight-color: transparent;
 }
 
-.btn--sun {
-  --btn-bg: var(--sun);
-  --btn-fg: var(--midnight);
-  border-color: var(--sun);
+.btn--primary {
+  --btn-bg: var(--cta);
+  --btn-fg: var(--on-cta);
+  --btn-border: var(--cta);
+}
+
+.btn--sm {
+  min-height: var(--btn-h-sm);
+  padding-inline: 1.1em;
+  font-size: var(--text-ui-sm);
 }
 
 .btn:active {
@@ -218,23 +244,43 @@ button {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .btn--sun:hover {
-    --btn-bg: var(--white);
-    border-color: var(--white);
+  .btn--primary:hover {
+    --btn-bg: var(--cta-hover);
+    --btn-fg: var(--on-cta-hover);
+    --btn-border: var(--cta-hover);
   }
-  .btn:not(.btn--sun):hover {
-    --btn-bg: currentColor;
-  }
-  .btn:not(.btn--sun):hover > span {
-    filter: invert(1);
+  .btn:not(.btn--primary):hover {
+    --btn-bg: var(--fg);
+    --btn-fg: var(--surface);
+    --btn-border: var(--fg);
   }
 }
 
-/* Draw-in underline for text links */
+/* ───────── Chips: small pill labels (prompt tag, before/after tags) ───────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25em 0.75em;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: var(--weight-medium);
+  line-height: var(--lh-ui);
+  white-space: nowrap;
+}
+.chip--outline {
+  border: 1px solid var(--line-strong);
+}
+.chip--solid {
+  background: var(--deep);
+  color: var(--white);
+}
+
+/* ───────── Text links: draw-in underline ───────── */
 .link {
   text-decoration: none;
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat;
-  transition: background-size 0.4s var(--ease-out);
+  transition: background-size var(--dur-base) var(--ease-out);
 }
 .link:hover,
 .link:focus-visible {

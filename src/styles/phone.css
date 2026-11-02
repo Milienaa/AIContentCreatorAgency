@@ -13,12 +13,12 @@
   aspect-ratio: 9 / 19.5;
   padding: 3.4cqw;
   border-radius: 14cqw;
-  background: #0b0a22;
+  background: var(--phone-shell);
   box-shadow:
-    inset 0 0 0 1.2px rgb(255 255 255 / 0.14),
-    inset 0 0 0 3px #0b0a22,
-    inset 0 0 0 4px rgb(255 255 255 / 0.06),
-    0 50px 90px -40px rgb(8 6 50 / 0.75);
+    inset 0 0 0 1.2px rgb(var(--white-rgb) / 0.14),
+    inset 0 0 0 3px var(--phone-shell),
+    inset 0 0 0 4px rgb(var(--white-rgb) / 0.06),
+    var(--phone-shadow);
 }
 
 .phone__island {
@@ -27,8 +27,8 @@
   left: 50%;
   width: 30cqw;
   height: 8.4cqw;
-  border-radius: 99px;
-  background: #000;
+  border-radius: var(--radius-pill);
+  background: var(--black);
   translate: -50% 0;
   z-index: 4;
 }
@@ -39,7 +39,7 @@
   height: 100%;
   overflow: hidden;
   border-radius: 11cqw;
-  background: var(--midnight);
+  background: var(--deep);
   isolation: isolate;
 }
 
@@ -50,7 +50,7 @@
   height: 100%;
   object-fit: cover;
   transform: scale(calc(1.06 - var(--gen) * 0.06));
-  transition: transform 0.6s var(--ease-out);
+  transition: transform var(--dur-slow) var(--ease-out);
 }
 
 /* Noise veil — fades as generation progresses. Opacity + bg-position only. */
@@ -74,7 +74,7 @@
 [data-state='paused'] .phone__noise {
   opacity: 0;
   animation: none;
-  transition: opacity 0.7s var(--ease-out);
+  transition: opacity var(--dur-slow) var(--ease-out);
 }
 
 @keyframes phone-noise {
@@ -103,14 +103,14 @@
   min-height: 3lh;
   padding: 3.5cqw 4.5cqw;
   border-radius: 5cqw;
-  background: rgb(20 18 58 / 0.72);
+  background: rgb(var(--deep-rgb) / 0.72);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   font-size: 5.2cqw;
-  font-stretch: 90%;
-  line-height: 1.3;
+  font-stretch: var(--wdth-condensed);
+  line-height: var(--lh-ui);
   opacity: 0;
-  transition: opacity 0.4s var(--ease-out);
+  transition: opacity var(--dur-base) var(--ease-out);
 }
 
 .phone__prompt-text::after {
@@ -120,12 +120,8 @@
   height: 1em;
   margin-left: 2px;
   vertical-align: -0.12em;
-  background: var(--sun);
+  background: var(--phone-accent);
   animation: caret 0.8s steps(1) infinite;
-}
-
-@keyframes caret {
-  50% { opacity: 0; }
 }
 
 [data-state='prompt'] .phone__prompt,
@@ -138,10 +134,10 @@
   align-items: center;
   gap: 2.5cqw;
   font-size: 5cqw;
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
   font-variant-numeric: tabular-nums;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity var(--dur-base);
 }
 
 [data-state='generating'] .phone__status {
@@ -160,10 +156,10 @@
   stroke-width: 3.5;
 }
 .phone__ring-track {
-  stroke: rgb(255 255 255 / 0.2);
+  stroke: rgb(var(--white-rgb) / 0.2);
 }
 .phone__ring-fill {
-  stroke: var(--sun);
+  stroke: var(--phone-accent);
   stroke-linecap: round;
   transition: stroke-dashoffset 0.12s linear;
 }
@@ -174,15 +170,15 @@
   top: -6cqw;
   justify-self: start;
   padding: 1.6cqw 3.6cqw;
-  border-radius: 99px;
+  border-radius: var(--radius-pill);
   font-size: 4.4cqw;
-  font-weight: 650;
+  font-weight: var(--weight-semibold);
   opacity: 0;
 }
 
 .phone__badge {
-  background: var(--mint);
-  color: var(--midnight);
+  background: var(--honey);
+  color: var(--deep);
 }
 
 [data-state='rendered'] .phone__badge {
@@ -197,8 +193,8 @@
 
 .phone__error {
   position: static;
-  background: var(--sun);
-  color: var(--midnight);
+  background: var(--honey);
+  color: var(--deep);
   border-radius: 5cqw;
   padding: 3.5cqw 4.5cqw;
   font-size: 5cqw;
@@ -222,7 +218,7 @@
   outline-offset: -6px;
 }
 
-/* Paused indicator: sun disc + midnight play triangle */
+/* Paused indicator: aqua disc + deep play triangle */
 .phone__toggle::before,
 .phone__toggle::after {
   content: '';
@@ -232,21 +228,21 @@
   translate: -50% -50%;
   opacity: 0;
   scale: 0.8;
-  transition: opacity 0.3s var(--ease-out), scale 0.3s var(--ease-out);
+  transition: opacity var(--dur-base) var(--ease-out), scale var(--dur-base) var(--ease-out);
 }
 
 .phone__toggle::before {
   width: 20cqw;
   height: 20cqw;
-  border-radius: 50%;
-  background: var(--sun);
+  border-radius: var(--radius-round);
+  background: var(--phone-accent);
 }
 
 .phone__toggle::after {
   width: 7cqw;
   height: 8cqw;
   margin-left: 1cqw;
-  background: var(--midnight);
+  background: var(--deep);
   clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 
@@ -260,7 +256,7 @@
   transform: scale(0.985);
 }
 .phone__body {
-  transition: transform 0.3s var(--ease-out);
+  transition: transform var(--dur-base) var(--ease-out);
 }
 
 @media (prefers-reduced-motion: reduce) {

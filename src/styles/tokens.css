@@ -1,19 +1,35 @@
-:root {
-  /* Color */
-  --cobalt: #2b2bff;
-  --cobalt-deep: #1f1fd6;
-  --lilac: #e7e3ff;
-  --midnight: #14123a;
-  --sun: #ffd23f;
-  --heliotrope: #b69cff;
-  --mint: #7df0c8;
-  --white: #ffffff;
+/* ==========================================================================
+   Denoise design tokens
+   1. Primitives  — raw values, never used directly by components except
+                    where a component always sits on its own fixed ground
+                    (the phone screen, media overlays).
+   2. Semantic    — roles that change per surface (.surface--*).
+   3. Component   — sizes shared by a family of components.
+   Breakpoints can't be custom properties; the system uses 420 / 768 / 1024.
+   ========================================================================== */
 
-  /* Type */
+:root {
+  /* ── 1. Primitives ─────────────────────────────────────────────────── */
+
+  /* Color — "Cobalt & Aqua": screen glow plus one cool accent for action */
+  --cobalt: #2e37ff; /* main surface: hero, process, contact */
+  --aqua: #74f0d6; /* the one action color: CTAs, focus, result numbers on dark */
+  --frost: #eaf1ff; /* light editorial surface */
+  --deep: #0e1240; /* text on light, dark sections */
+  --deep-900: #080a2a; /* phone shell, darker than any section */
+  --sky: #9fe6ff; /* secondary surface: marquee, tiles, featured plan */
+  --honey: #ffd98a; /* status and alerts: "Rendered", form errors */
+  --white: #ffffff;
+  --black: #000000;
+  /* Channels for alpha mixes: rgb(var(--white-rgb) / 0.5) */
+  --white-rgb: 255 255 255;
+  --deep-rgb: 14 18 64;
+
+  /* Type families */
   --font-display: 'Anybody Variable', 'Arial Narrow', sans-serif;
   --font-text: 'Newsreader Variable', Georgia, serif;
 
-  /* Modular scale 1.333, base 18px mobile / 20px desktop */
+  /* Type scale — modular 1.333, base 18px mobile / 20px desktop */
   --base: 1.125rem;
   --step--1: calc(var(--base) / 1.333);
   --step-0: var(--base);
@@ -23,17 +39,189 @@
   --step-4: calc(var(--base) * 3.157);
   --step-5: calc(var(--base) * 4.209);
   --step-6: calc(var(--base) * 5.61);
-  --wordmark: clamp(4rem, 18vw, 18rem);
+  /* Fluid display sizes */
+  --display-m: clamp(2.6rem, 11vw, var(--step-5)); /* case clients, prices */
+  --display-l: clamp(2.4rem, 11vw, var(--step-6)); /* section titles */
+  --display-xl: clamp(3.2rem, 14vw, 11rem); /* menu links, big stats */
 
-  /* Space */
+  /* Weights */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-heavy: 800;
+  --weight-black: 900;
+
+  /* Widths — Anybody's wdth axis; narrow → ultra is the "denoise" motion */
+  --wdth-narrow: 60%;
+  --wdth-condensed: 85%;
+  --wdth-normal: 100%;
+  --wdth-wide: 115%;
+  --wdth-ultra: 150%;
+
+  /* Leading */
+  --lh-wordmark: 0.82;
+  --lh-tight: 0.92;
+  --lh-heading: 1.05;
+  --lh-ui: 1.3;
+  --lh-lede: 1.4;
+  --lh-body: 1.55;
+
+  /* Tracking */
+  --track-wordmark: -0.035em;
+  --track-tight: -0.02em;
+  --track-label: 0.01em;
+
+  /* Space — 4px rhythm, fluid at the large end */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: clamp(3rem, 7vw, 6rem);
+  --space-3xl: clamp(4rem, 9vw, 8rem);
+  --space-section: clamp(6rem, 14vw, 12rem);
+
+  /* Layout */
   --gutter: 16px;
-  --section-y: clamp(6rem, 14vw, 12rem);
+  --grid-gap: 1rem;
+  --container-max: 1680px;
+  --measure: 68ch;
+
+  /* Radius — by role, so size signals hierarchy */
+  --radius-s: 12px; /* controls: fields, bars, prompt cards, storyboard frames */
+  --radius-m: 20px; /* media frames */
+  --radius-l: 32px; /* containers: service tiles, plans */
+  --radius-pill: 999px; /* buttons, chips, badges */
+  --radius-round: 50%;
+
+  /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 0.2s;
+  --dur-base: 0.35s;
+  --dur-slow: 0.6s;
+
+  /* Layers */
+  --z-veil: 5;
+  --z-menu: 40;
+  --z-nav: 50;
+  --z-cursor: 60;
+  --z-skip: 100;
+
+  /* ── 3. Component ──────────────────────────────────────────────────── */
+  --tap-min: 44px;
+  --btn-h: 48px;
+  --btn-h-sm: 42px;
+  --text-ui-sm: 0.95rem;
+  --nav-offset: 96px; /* clears the fixed nav */
+  --field-h: 52px;
+  --border-w: 1.5px;
+  --focus-w: 3px;
+  --phone-shell: var(--deep-900);
+  --phone-accent: var(--aqua);
+  --phone-shadow: 0 50px 90px -40px rgb(var(--deep-rgb) / 0.75);
 }
 
 @media (min-width: 1024px) {
   :root {
     --base: 1.25rem;
     --gutter: 4vw;
+    --grid-gap: 1.5rem;
   }
+}
+
+/* ── 2. Semantic roles, set per surface ─────────────────────────────────
+   Components read only these. Contrast (WCAG 2.1) is checked for each:
+   --fg-muted / --fg-subtle ≥ 4.5:1, --line-strong ≥ 3:1 (field borders).  */
+
+/* Deep — the page default */
+:root,
+.surface--deep {
+  --surface: var(--deep);
+  --fg: var(--white);
+  --fg-muted: rgb(var(--white-rgb) / 0.76); /* 10.5:1 */
+  --fg-subtle: rgb(var(--white-rgb) / 0.6); /* 6.9:1 */
+  --line: rgb(var(--white-rgb) / 0.16);
+  --line-strong: rgb(var(--white-rgb) / 0.45); /* 4.4:1 */
+  --fill: rgb(var(--white-rgb) / 0.06);
+  --fill-strong: rgb(var(--white-rgb) / 0.12);
+  --accent: var(--aqua); /* 12.9:1 */
+  --on-accent: var(--deep);
+  --cta: var(--aqua);
+  --on-cta: var(--deep);
+  --cta-hover: var(--white);
+  --on-cta-hover: var(--deep);
+  --focus: var(--aqua);
+  --alert: var(--honey);
+  --ghost-ink: var(--sky);
+}
+
+/* Cobalt — the brand glow */
+.surface--cobalt {
+  --surface: var(--cobalt);
+  --fg: var(--white); /* 6.8:1 */
+  --fg-muted: rgb(var(--white-rgb) / 0.86); /* 5.3:1 */
+  --fg-subtle: rgb(var(--white-rgb) / 0.78); /* 4.7:1 */
+  --line: rgb(var(--white-rgb) / 0.28);
+  --line-strong: rgb(var(--white-rgb) / 0.6); /* 3.3:1 */
+  --fill: rgb(var(--white-rgb) / 0.08);
+  --fill-strong: rgb(var(--white-rgb) / 0.16);
+  --accent: var(--aqua); /* 4.9:1 */
+  --on-accent: var(--deep);
+  --cta: var(--aqua);
+  --on-cta: var(--deep);
+  --cta-hover: var(--white);
+  --on-cta-hover: var(--deep);
+  --focus: var(--aqua);
+  --alert: var(--honey); /* 5.0:1 */
+  --ghost-ink: var(--sky);
+}
+
+/* Frost and white — light editorial grounds */
+.surface--frost,
+.surface--white {
+  --surface: var(--frost);
+  --fg: var(--deep);
+  --fg-muted: rgb(var(--deep-rgb) / 0.8); /* 8.9:1 */
+  --fg-subtle: rgb(var(--deep-rgb) / 0.68); /* 5.9:1 */
+  --line: rgb(var(--deep-rgb) / 0.18);
+  --line-strong: rgb(var(--deep-rgb) / 0.55); /* 3.9:1 */
+  --fill: rgb(var(--deep-rgb) / 0.04);
+  --fill-strong: rgb(var(--deep-rgb) / 0.08);
+  --accent: var(--cobalt); /* 6.0:1 */
+  --on-accent: var(--white);
+  --cta: var(--cobalt);
+  --on-cta: var(--white);
+  --cta-hover: var(--deep);
+  --on-cta-hover: var(--white);
+  --focus: var(--cobalt);
+  --alert: var(--deep);
+  --ghost-ink: var(--cobalt);
+}
+.surface--white {
+  --surface: var(--white);
+}
+
+/* Sky — secondary ground */
+.surface--sky {
+  --surface: var(--sky);
+  --fg: var(--deep); /* 12.9:1 */
+  --fg-muted: rgb(var(--deep-rgb) / 0.8);
+  --fg-subtle: rgb(var(--deep-rgb) / 0.7);
+  --line: rgb(var(--deep-rgb) / 0.2);
+  --line-strong: rgb(var(--deep-rgb) / 0.55);
+  --fill: rgb(var(--deep-rgb) / 0.05);
+  --fill-strong: rgb(var(--deep-rgb) / 0.1);
+  --accent: var(--cobalt); /* 4.9:1 */
+  --on-accent: var(--white);
+  --cta: var(--cobalt);
+  --on-cta: var(--white);
+  --cta-hover: var(--deep);
+  --on-cta-hover: var(--white);
+  --focus: var(--deep);
+  --alert: var(--deep);
+  --ghost-ink: var(--cobalt);
 }
