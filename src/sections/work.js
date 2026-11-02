@@ -16,6 +16,7 @@ export function caseMarkup(c, i) {
     <p class="case__category label">${esc(c.category)}</p>
     <h3 class="case__client display" id="case-${esc(c.id)}">${esc(c.client)}</h3>
     <p class="case__brief lede">${esc(c.brief)}</p>
+    <p class="case__desc">${esc(c.description)}</p>
     <dl class="case__metrics">
       ${c.metrics
         .map(

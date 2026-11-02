@@ -433,6 +433,11 @@
   max-width: 28ch;
 }
 
+.case__desc {
+  max-width: 46ch;
+  color: var(--fg-muted);
+}
+
 .case__metrics {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
