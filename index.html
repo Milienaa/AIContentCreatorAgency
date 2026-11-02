@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Denoise — AI content studio for short-form video</title>
+    <meta
+      name="description"
+      content="Denoise scripts, generates and edits short-form video and AI UGC ads for brands. Human-directed, delivered in days, not weeks."
+    />
+    <meta name="theme-color" content="#2b2bff" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Denoise — AI content studio" />
+    <meta property="og:description" content="AI-made content, human-directed. Short-form video and AI UGC ads in days, not weeks." />
+    <meta property="og:image" content="/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/media/noise.webp" as="image" type="image/webp" />
+    <script>
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("intro-pending");
+    </script>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Nav -->
+    <header class="nav" data-nav>
+      <a class="nav__logo" href="#top" aria-label="Denoise, back to top">Denoise</a>
+      <div class="nav__actions">
+        <a class="btn btn--sun nav__cta" href="#contact" data-magnetic><span>Book a call</span></a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+          <span class="nav__toggle-label">Menu</span>
+          <span class="nav__toggle-lines" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="menu" id="menu" data-menu hidden>
+      <nav aria-label="Main">
+        <ul class="menu__list" role="list">
+          <li><a class="menu__link" href="#work">Work</a></li>
+          <li><a class="menu__link" href="#services">Services</a></li>
+          <li><a class="menu__link" href="#process">Process</a></li>
+          <li><a class="menu__link" href="#pricing">Pricing</a></li>
+          <li><a class="menu__link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <p class="menu__foot">
+        <a class="link" href="mailto:hello@denoise.studio">hello@denoise.studio</a>
+      </p>
+    </div>
+
+    <main id="main">
+      <!-- Hero -->
+      <section class="hero surface--cobalt" id="top" aria-labelledby="hero-title">
+        <div class="container hero__inner">
+          <p class="hero__prompt" aria-hidden="true">
+            <span class="hero__prompt-label label">Prompt</span>
+            <span class="hero__prompt-text" data-hero-prompt="a brand film nobody has to shoot, 9:16, ready by Friday"></span>
+          </p>
+
+          <h1 class="hero__title" id="hero-title">
+            <span class="hero__wordmark display" data-wordmark>Denoise</span>
+            <span class="hero__claim display" data-split>AI-made content, human-directed.</span>
+          </h1>
+
+          <div class="hero__body">
+            <p class="lede hero__lede">
+              We script, generate and edit short-form video for brands that need more creative, faster — without a film crew.
+            </p>
+            <div class="hero__ctas">
+              <a class="btn btn--sun" href="#contact" data-magnetic><span>Book a call</span></a>
+              <a class="btn" href="#work" data-magnetic><span>See the work</span></a>
+            </div>
+          </div>
+
+          <div class="hero__phones" data-phones="hero"></div>
+        </div>
+      </section>
+
+      <!-- Marquee -->
+      <div class="marquee" aria-label="Platforms and clients">
+        <div class="marquee__track" data-marquee>
+          <ul class="marquee__list" role="list">
+            <li>Instagram Reels</li><li>TikTok</li><li>YouTube Shorts</li><li>Meta Ads</li>
+            <li>Lumea Skin</li><li>Northline</li><li>Oro Coffee</li><li>Pulse Audio</li><li>Kinetic Club</li>
+          </ul>
+          <ul class="marquee__list" role="list" aria-hidden="true">
+            <li>Instagram Reels</li><li>TikTok</li><li>YouTube Shorts</li><li>Meta Ads</li>
+            <li>Lumea Skin</li><li>Northline</li><li>Oro Coffee</li><li>Pulse Audio</li><li>Kinetic Club</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Selected work -->
+      <section class="work section surface--midnight" id="work" aria-labelledby="work-title">
+        <p class="ghost display" aria-hidden="true" data-ghost>Work</p>
+        <div class="container">
+          <header class="section-head">
+            <h2 class="display h-section" id="work-title" data-split>Selected work</h2>
+            <p class="lede">Five launches, generated and directed in-house. Tap a phone to pause it.</p>
+          </header>
+          <div class="work__list" data-cases></div>
+        </div>
+      </section>
+
+      <!-- Deep dive -->
+      <section class="dive section surface--lilac" id="case-lumea" aria-labelledby="dive-title">
+        <p class="ghost ghost--dark display" aria-hidden="true" data-ghost>Lumea</p>
+        <div class="container">
+          <header class="section-head">
+            <h2 class="display h-section" id="dive-title" data-split>How the Lumea launch was made</h2>
+            <p class="lede">One serum, zero studio days. Here is the whole path from brief to a 2.4M-view reel.</p>
+          </header>
+
+          <ol class="dive__steps" role="list">
+            <li class="dive__step dive__step--brief" data-reveal>
+              <h3 class="dive__step-title"><span class="dive__num">1</span> Brief</h3>
+              <p class="prose">
+                Lumea needed launch content for a vitamin C serum aimed at people who skip ads. No studio, no models, six days.
+                We agreed on one idea: the product as morning light.
+              </p>
+            </li>
+
+            <li class="dive__step dive__step--board">
+              <h3 class="dive__step-title" data-reveal><span class="dive__num">2</span> Storyboard</h3>
+              <div class="dive__board" data-stagger data-denoise>
+                <img src="/media/storyboard/frame-1.webp" alt="Sketch frame 1: close-up of the serum bottle" width="360" height="640" loading="lazy" />
+                <img src="/media/storyboard/frame-2.webp" alt="Sketch frame 2: dropper lifting out" width="360" height="640" loading="lazy" />
+                <img src="/media/storyboard/frame-3.webp" alt="Sketch frame 3: drop forming" width="360" height="640" loading="lazy" />
+                <img src="/media/storyboard/frame-4.webp" alt="Sketch frame 4: drop falling" width="360" height="640" loading="lazy" />
+                <img src="/media/storyboard/frame-5.webp" alt="Sketch frame 5: drop meeting skin" width="360" height="640" loading="lazy" />
+                <img src="/media/storyboard/frame-6.webp" alt="Sketch frame 6: light spreading" width="360" height="640" loading="lazy" />
+                <img src="/media/storyboard/frame-7.webp" alt="Sketch frame 7: product hero shot" width="360" height="640" loading="lazy" />
+                <img src="/media/storyboard/frame-8.webp" alt="Sketch frame 8: end card" width="360" height="640" loading="lazy" />
+              </div>
+            </li>
+
+            <li class="dive__step dive__step--prompt" data-reveal>
+              <h3 class="dive__step-title"><span class="dive__num">3</span> Prompt</h3>
+              <blockquote class="dive__prompt">
+                <p>serum drop falling on skin, macro, warm morning light, shallow depth of field, soft peach haze, 9:16</p>
+              </blockquote>
+              <p class="prose">
+                Forty-two generations, eleven kept. A human editor picks every frame, fixes hands and labels, and grades the
+                result to Lumea's palette.
+              </p>
+            </li>
+
+            <li class="dive__step dive__step--final">
+              <h3 class="dive__step-title" data-reveal><span class="dive__num">4</span> Sketch to final</h3>
+              <div class="compare-slider" data-before-after data-denoise style="--pos: 50%">
+                <img class="compare-slider__after" src="/media/storyboard/final-frame.webp" alt="Final graded frame from the Lumea reel" width="720" height="1280" loading="lazy" />
+                <img class="compare-slider__before" src="/media/storyboard/final-sketch.webp" alt="" width="720" height="1280" loading="lazy" />
+                <span class="compare-slider__handle" aria-hidden="true"></span>
+                <span class="compare-slider__tag compare-slider__tag--before label" aria-hidden="true">Sketch</span>
+                <span class="compare-slider__tag compare-slider__tag--after label" aria-hidden="true">Final</span>
+                <input class="compare-slider__range" type="range" min="0" max="100" value="50" aria-label="Compare sketch and final frame" />
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- AI vs traditional -->
+      <section class="versus section surface--midnight" aria-labelledby="versus-title">
+        <div class="container">
+          <header class="section-head">
+            <h2 class="display h-section" id="versus-title" data-split>A shoot takes weeks. We take days.</h2>
+            <p class="lede">Same goal, a very different budget line.</p>
+          </header>
+
+          <div class="versus__bars" data-bars>
+            <div class="versus__bar-row">
+              <span class="versus__bar-name label">Traditional shoot</span>
+              <span class="versus__bar versus__bar--old" style="--w: 1"><span>4–6 weeks</span></span>
+            </div>
+            <div class="versus__bar-row">
+              <span class="versus__bar-name label">Denoise</span>
+              <span class="versus__bar versus__bar--new" style="--w: 0.16"><span>3–5 days</span></span>
+            </div>
+          </div>
+
+          <table class="versus__table">
+            <caption class="visually-hidden">Traditional production compared with Denoise</caption>
+            <thead>
+              <tr>
+                <th scope="col"><span class="visually-hidden">Measure</span></th>
+                <th scope="col">Traditional shoot</th>
+                <th scope="col">Denoise</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Time to first cut</th><td>4–6 weeks</td><td>3–5 days</td></tr>
+              <tr><th scope="row">Cost per finished video</th><td>$8k–25k</td><td>From $300</td></tr>
+              <tr><th scope="row">Variants to test</th><td>1–3</td><td>10–30</td></tr>
+              <tr><th scope="row">A version for a new market</th><td>Reshoot or dub</td><td>Same week</td></tr>
+              <tr><th scope="row">Changing the idea late</th><td>Another shoot day</td><td>Another afternoon</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section class="services section surface--lilac" id="services" aria-labelledby="services-title">
+        <div class="container">
+          <header class="section-head">
+            <h2 class="display h-section" id="services-title" data-split>What we make</h2>
+            <p class="lede">Everything is built for the feed: vertical, fast to read, made to be tested.</p>
+          </header>
+
+          <ul class="services__grid" role="list" data-stagger>
+            <li class="tile tile--lg tile--cobalt" data-denoise>
+              <h3 class="tile__title">AI UGC ads</h3>
+              <p>Creator-style ads with generated talent, scripted from your reviews and tested in batches of ten.</p>
+              <p class="tile__meta label">Usually 5 days</p>
+            </li>
+            <li class="tile tile--lg tile--helio" data-denoise>
+              <h3 class="tile__title">AI avatars and spokespeople</h3>
+              <p>A consistent on-screen face for your brand that speaks twelve languages and never needs a reshoot.</p>
+              <p class="tile__meta label">Usually 7 days</p>
+            </li>
+            <li class="tile tile--white" data-denoise>
+              <h3 class="tile__title">Product visuals</h3>
+              <p>Hero shots and motion loops of your product in places you'd never fly a crew to.</p>
+              <p class="tile__meta label">Usually 3 days</p>
+            </li>
+            <li class="tile tile--midnight" data-denoise>
+              <h3 class="tile__title">Motion and edits</h3>
+              <p>Captions, pacing, sound design and the cut that holds attention past second three.</p>
+              <p class="tile__meta label">Usually 2 days</p>
+            </li>
+            <li class="tile tile--white" data-denoise>
+              <h3 class="tile__title">Content strategy</h3>
+              <p>What to post, where, and which variant to scale, read from your own numbers every week.</p>
+              <p class="tile__meta label">Ongoing</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section class="process section surface--cobalt" id="process" aria-labelledby="process-title">
+        <div class="container">
+          <header class="section-head">
+            <h2 class="display h-section" id="process-title" data-split>From brief to feed in four steps</h2>
+          </header>
+
+          <ol class="process__steps" role="list" data-stagger>
+            <li class="process__step">
+              <span class="process__num display" aria-hidden="true">1</span>
+              <h3 class="process__title">Brief</h3>
+              <p>A 30-minute call about the product, the audience and what a win looks like in numbers.</p>
+            </li>
+            <li class="process__step">
+              <span class="process__num display" aria-hidden="true">2</span>
+              <h3 class="process__title">Script and storyboard</h3>
+              <p>Hooks, scripts and a frame-by-frame board you approve before anything is generated.</p>
+            </li>
+            <li class="process__step">
+              <span class="process__num display" aria-hidden="true">3</span>
+              <h3 class="process__title">Generate and direct</h3>
+              <p>We generate dozens of takes per shot and keep the few that look like your brand.</p>
+            </li>
+            <li class="process__step">
+              <span class="process__num display" aria-hidden="true">4</span>
+              <h3 class="process__title">Edit, test, scale</h3>
+              <p>Final cuts in every format, launched as variants. We double down on what performs.</p>
+            </li>
+          </ol>
+          <span class="process__line" aria-hidden="true" data-process-line></span>
+
+          <p class="process__tools prose" data-reveal>
+            Our toolkit includes Veo, Runway, Kling, Midjourney, ElevenLabs and DaVinci Resolve. We pick per shot, not per habit.
+          </p>
+        </div>
+      </section>
+
+      <!-- Results -->
+      <section class="results section surface--lilac" aria-labelledby="results-title">
+        <div class="container">
+          <header class="section-head">
+            <h2 class="display h-section" id="results-title" data-split>What clients get back</h2>
+          </header>
+
+          <dl class="results__stats" data-stagger>
+            <div class="stat">
+              <dt class="stat__label">views across client campaigns</dt>
+              <dd class="stat__value display" data-count="14" data-suffix="M+">14M+</dd>
+            </div>
+            <div class="stat">
+              <dt class="stat__label">average return on ad spend</dt>
+              <dd class="stat__value display" data-count="4.2" data-decimals="1" data-suffix="×">4.2×</dd>
+            </div>
+            <div class="stat">
+              <dt class="stat__label">average days from brief to launch</dt>
+              <dd class="stat__value display" data-count="6">6</dd>
+            </div>
+          </dl>
+
+          <div class="results__quotes" data-stagger>
+            <figure class="quote">
+              <blockquote>
+                <p>We got twelve ad variants in the time our old agency took to send a treatment. Three of them beat our best performer.</p>
+              </blockquote>
+              <figcaption><strong>Maya Ortiz</strong>, Head of Growth, Northline</figcaption>
+            </figure>
+            <figure class="quote">
+              <blockquote>
+                <p>Nobody in the comments asked if it was AI. They asked where to buy the serum.</p>
+              </blockquote>
+              <figcaption><strong>Daniel Reyes</strong>, Founder, Lumea Skin</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Packages -->
+      <section class="pricing section surface--midnight" id="pricing" aria-labelledby="pricing-title">
+        <div class="container">
+          <header class="section-head">
+            <h2 class="display h-section" id="pricing-title" data-split>Packages</h2>
+            <p class="lede">Clear prices so you can plan before we talk. Every package includes commercial usage rights.</p>
+          </header>
+
+          <ul class="pricing__list" role="list" data-stagger>
+            <li class="plan">
+              <h3 class="plan__name">Test</h3>
+              <p class="plan__price display">$900</p>
+              <p class="plan__fit">For trying AI content on one product.</p>
+              <ul class="plan__features" role="list">
+                <li>3 short videos</li>
+                <li>2 variants of each</li>
+                <li>1 round of edits</li>
+                <li>Delivered in 5 days</li>
+              </ul>
+              <a class="btn" href="#contact" data-magnetic><span>Start with Test</span></a>
+            </li>
+            <li class="plan plan--featured">
+              <h3 class="plan__name">Launch</h3>
+              <p class="plan__price display">$2,800</p>
+              <p class="plan__fit">For a product launch across platforms.</p>
+              <ul class="plan__features" role="list">
+                <li>8 short videos</li>
+                <li>4 variants of each</li>
+                <li>AI spokesperson included</li>
+                <li>2 rounds of edits</li>
+                <li>Delivered in 10 days</li>
+              </ul>
+              <a class="btn btn--sun" href="#contact" data-magnetic><span>Plan a launch</span></a>
+            </li>
+            <li class="plan">
+              <h3 class="plan__name">Always-on</h3>
+              <p class="plan__price display">$5,500<span class="plan__per">/month</span></p>
+              <p class="plan__fit">For brands that post every day.</p>
+              <ul class="plan__features" role="list">
+                <li>20 videos a month</li>
+                <li>Weekly variant testing</li>
+                <li>Strategy call every two weeks</li>
+                <li>Cancel with 30 days' notice</li>
+              </ul>
+              <a class="btn" href="#contact" data-magnetic><span>Talk about Always-on</span></a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq section surface--lilac" aria-labelledby="faq-title">
+        <div class="container faq__inner">
+          <h2 class="display h-section" id="faq-title" data-split>Questions brands ask first</h2>
+          <div class="faq__list" data-faq>
+            <details>
+              <summary>Who owns the videos?</summary>
+              <div class="faq__answer"><p>You do. Every delivery comes with full commercial usage rights, and we only use tools whose terms allow commercial use of generated output.</p></div>
+            </details>
+            <details>
+              <summary>Will it look like AI?</summary>
+              <div class="faq__answer"><p>Not if we do our job. A human director reviews every frame, fixes artefacts by hand and grades everything to your brand palette before you see it.</p></div>
+            </details>
+            <details>
+              <summary>Do you label AI-generated content?</summary>
+              <div class="faq__answer"><p>Yes, wherever a platform or law requires it. We set up the right disclosure labels for Meta, TikTok and YouTube as part of delivery.</p></div>
+            </details>
+            <details>
+              <summary>Is it safe for my brand?</summary>
+              <div class="faq__answer"><p>We never generate real people's likenesses, competitors' products or copyrighted characters. Your brand book becomes a checklist every video passes before delivery.</p></div>
+            </details>
+            <details>
+              <summary>How many rounds of edits do I get?</summary>
+              <div class="faq__answer"><p>One on Test, two on Launch, and unlimited small edits on Always-on. Changing the core idea after the storyboard counts as a new video.</p></div>
+            </details>
+            <details>
+              <summary>What do you need from us?</summary>
+              <div class="faq__answer"><p>Your product, your brand book if you have one, and 30 minutes for the brief. Product photos help but are not required.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="contact section surface--cobalt" id="contact" aria-labelledby="contact-title">
+        <div class="container contact__inner">
+          <div class="contact__intro">
+            <h2 class="display h-section" id="contact-title" data-split>Let's make something people stop for.</h2>
+            <p class="lede">Tell us about the product. We reply within one working day with ideas and a quote.</p>
+            <p class="contact__alt">
+              Prefer to talk? <a class="link" href="mailto:hello@denoise.studio?subject=Book%20a%20call">Book a 20-minute call</a>
+            </p>
+          </div>
+
+          <form class="form" novalidate data-form>
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" aria-describedby="f-name-err" />
+              <p class="field__error" id="f-name-err" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="f-email">Work email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" aria-describedby="f-email-err" />
+              <p class="field__error" id="f-email-err" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="f-brand">Brand <span class="field__opt">(optional)</span></label>
+              <input id="f-brand" name="brand" type="text" autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label for="f-budget">Budget</label>
+              <select id="f-budget" name="budget" aria-describedby="f-budget-err">
+                <option value="">Choose a range</option>
+                <option>Under $1,000</option>
+                <option>$1,000–3,000</option>
+                <option>$3,000–6,000</option>
+                <option>$6,000+ per month</option>
+              </select>
+              <p class="field__error" id="f-budget-err" aria-live="polite"></p>
+            </div>
+            <div class="field field--wide">
+              <label for="f-message">What are you launching? <span class="field__opt">(optional)</span></label>
+              <textarea id="f-message" name="message" rows="4"></textarea>
+            </div>
+            <button class="btn btn--sun form__submit" type="submit" data-magnetic><span>Send brief</span></button>
+            <p class="form__success" role="status" hidden>Thanks — we'll reply within 24 hours.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer surface--midnight">
+      <div class="container footer__inner">
+        <ul class="footer__links" role="list">
+          <li><a class="link" href="mailto:hello@denoise.studio">hello@denoise.studio</a></li>
+          <li><a class="link" href="#" rel="noopener">Instagram</a></li>
+          <li><a class="link" href="#" rel="noopener">TikTok</a></li>
+          <li><a class="link" href="#" rel="noopener">LinkedIn</a></li>
+        </ul>
+        <p class="footer__copy">© 2026 Denoise. Directed by people, generated by machines.</p>
+      </div>
+      <p class="footer__wordmark display" aria-hidden="true">Denoise</p>
+    </footer>
+
+    <div class="cursor" aria-hidden="true" data-cursor><span class="cursor__label"></span></div>
+  </body>
+</html>

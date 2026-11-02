@@ -1,0 +1,39 @@
+:root {
+  /* Color */
+  --cobalt: #2b2bff;
+  --cobalt-deep: #1f1fd6;
+  --lilac: #e7e3ff;
+  --midnight: #14123a;
+  --sun: #ffd23f;
+  --heliotrope: #b69cff;
+  --mint: #7df0c8;
+  --white: #ffffff;
+
+  /* Type */
+  --font-display: 'Anybody Variable', 'Arial Narrow', sans-serif;
+  --font-text: 'Newsreader Variable', Georgia, serif;
+
+  /* Modular scale 1.333, base 18px mobile / 20px desktop */
+  --base: 1.125rem;
+  --step--1: calc(var(--base) / 1.333);
+  --step-0: var(--base);
+  --step-1: calc(var(--base) * 1.333);
+  --step-2: calc(var(--base) * 1.777);
+  --step-3: calc(var(--base) * 2.369);
+  --step-4: calc(var(--base) * 3.157);
+  --step-5: calc(var(--base) * 4.209);
+  --step-6: calc(var(--base) * 5.61);
+  --wordmark: clamp(4rem, 18vw, 18rem);
+
+  /* Space */
+  --gutter: 16px;
+  --section-y: clamp(6rem, 14vw, 12rem);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --base: 1.25rem;
+    --gutter: 4vw;
+  }
+}
