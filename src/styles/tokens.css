@@ -11,23 +11,32 @@
 :root {
   /* ── 1. Primitives ─────────────────────────────────────────────────── */
 
-  /* Color — "Cobalt & Aqua": screen glow plus one cool accent for action */
-  --cobalt: #2e37ff; /* main surface: hero, process, contact */
-  --aqua: #74f0d6; /* the one action color: CTAs, focus, result numbers on dark */
-  --frost: #eaf1ff; /* light editorial surface */
-  --deep: #0e1240; /* text on light, dark sections */
-  --deep-900: #080a2a; /* phone shell, darker than any section */
-  --sky: #9fe6ff; /* secondary surface: marquee, tiles, featured plan */
-  --honey: #ffd98a; /* status and alerts: "Rendered", form errors */
-  --white: #ffffff;
-  --black: #000000;
-  /* Channels for alpha mixes: rgb(var(--white-rgb) / 0.5) */
-  --white-rgb: 255 255 255;
-  --deep-rgb: 14 18 64;
+  /* Color — "Darkroom": pulled from the case footage itself.
+     Ink and charcoal from the Pulse studio black, bone paper from Lumea's wall,
+     ember from the serum and the crema, dusk from Northline's blue hour.
+     The footage stays the most saturated thing on the page. */
+  --ink: #0e0c0a; /* page ground, hero, work, pricing */
+  --char: #1a1612; /* warm charcoal: second dark ground */
+  --paper: #f1eadf; /* light editorial ground */
+  --ember: #f0a35e; /* the one action color on dark: CTAs, numbers, caret */
+  --ember-deep: #8a3f12; /* ember for text on paper (6.3:1) */
+  --dusk: #3a658f; /* quiet cool counterpoint, used once or twice */
+  --coral: #ff8a7a; /* errors on dark */
+  --rust: #a3271b; /* errors on paper */
+  --black: #050403; /* phone shell, darker than any section */
+  /* Channels for alpha mixes: rgb(var(--paper-rgb) / 0.5) */
+  --paper-rgb: 241 234 223;
+  --ink-rgb: 14 12 10;
 
-  /* Type families */
-  --font-display: 'Anybody Variable', 'Arial Narrow', sans-serif;
+  /* Type families — three roles:
+     display: editorial serif for headlines, claims and numbers
+     ui:      mono for prompts, labels, buttons — the "machine" voice
+     text:    the same serif at reading sizes
+     wordmark: Anybody, kept only for the logo and its ghosts */
+  --font-display: 'Newsreader Variable', Georgia, serif;
   --font-text: 'Newsreader Variable', Georgia, serif;
+  --font-ui: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-wordmark: 'Anybody Variable', 'Arial Narrow', sans-serif;
 
   /* Type scale — modular 1.333, base 18px mobile / 20px desktop */
   --base: 1.125rem;
@@ -45,6 +54,7 @@
   --display-xl: clamp(3.2rem, 14vw, 11rem); /* menu links, big stats */
 
   /* Weights */
+  --weight-display: 380; /* serif headlines stay light and large */
   --weight-light: 300;
   --weight-regular: 400;
   --weight-medium: 500;
@@ -62,7 +72,7 @@
 
   /* Leading */
   --lh-wordmark: 0.82;
-  --lh-tight: 0.92;
+  --lh-tight: 0.98;
   --lh-heading: 1.05;
   --lh-ui: 1.3;
   --lh-lede: 1.4;
@@ -70,8 +80,8 @@
 
   /* Tracking */
   --track-wordmark: -0.035em;
-  --track-tight: -0.02em;
-  --track-label: 0.01em;
+  --track-tight: -0.025em;
+  --track-label: 0.04em;
 
   /* Space — 4px rhythm, fluid at the large end */
   --space-3xs: 0.25rem;
@@ -106,6 +116,7 @@
 
   /* Layers */
   --z-veil: 5;
+  --z-grain: 55;
   --z-menu: 40;
   --z-nav: 50;
   --z-cursor: 60;
@@ -115,14 +126,15 @@
   --tap-min: 44px;
   --btn-h: 48px;
   --btn-h-sm: 42px;
-  --text-ui-sm: 0.95rem;
+  --text-ui-sm: 0.8rem;
+  --text-ui: 0.875rem;
   --nav-offset: 96px; /* clears the fixed nav */
   --field-h: 52px;
   --border-w: 1.5px;
   --focus-w: 3px;
-  --phone-shell: var(--deep-900);
-  --phone-accent: var(--aqua);
-  --phone-shadow: 0 50px 90px -40px rgb(var(--deep-rgb) / 0.75);
+  --phone-shell: var(--black);
+  --phone-accent: var(--ember);
+  --phone-shadow: 0 50px 90px -40px rgb(0 0 0 / 0.8);
 }
 
 @media (min-width: 1024px) {
@@ -137,91 +149,108 @@
    Components read only these. Contrast (WCAG 2.1) is checked for each:
    --fg-muted / --fg-subtle ≥ 4.5:1, --line-strong ≥ 3:1 (field borders).  */
 
-/* Deep — the page default */
+/* Ink — the page default */
 :root,
-.surface--deep {
-  --surface: var(--deep);
-  --fg: var(--white);
-  --fg-muted: rgb(var(--white-rgb) / 0.76); /* 10.5:1 */
-  --fg-subtle: rgb(var(--white-rgb) / 0.6); /* 6.9:1 */
-  --line: rgb(var(--white-rgb) / 0.16);
-  --line-strong: rgb(var(--white-rgb) / 0.45); /* 4.4:1 */
-  --fill: rgb(var(--white-rgb) / 0.06);
-  --fill-strong: rgb(var(--white-rgb) / 0.12);
-  --accent: var(--aqua); /* 12.9:1 */
-  --on-accent: var(--deep);
-  --cta: var(--aqua);
-  --on-cta: var(--deep);
-  --cta-hover: var(--white);
-  --on-cta-hover: var(--deep);
-  --focus: var(--aqua);
-  --alert: var(--honey);
-  --ghost-ink: var(--sky);
+.surface--ink {
+  --surface: var(--ink);
+  --fg: var(--paper); /* 16.3:1 */
+  --fg-muted: rgb(var(--paper-rgb) / 0.74); /* 9.0:1 */
+  --fg-subtle: rgb(var(--paper-rgb) / 0.58); /* 5.9:1 */
+  --line: rgb(var(--paper-rgb) / 0.14);
+  --line-strong: rgb(var(--paper-rgb) / 0.45); /* 3.7:1 */
+  --fill: rgb(var(--paper-rgb) / 0.05);
+  --fill-strong: rgb(var(--paper-rgb) / 0.1);
+  --accent: var(--ember); /* 9.4:1 */
+  --on-accent: var(--ink);
+  --cta: var(--ember);
+  --on-cta: var(--ink);
+  --cta-hover: var(--paper);
+  --on-cta-hover: var(--ink);
+  --focus: var(--ember);
+  --alert: var(--coral); /* 8.5:1 */
+  --ghost-ink: var(--paper);
 }
 
-/* Cobalt — the brand glow */
-.surface--cobalt {
-  --surface: var(--cobalt);
-  --fg: var(--white); /* 6.8:1 */
-  --fg-muted: rgb(var(--white-rgb) / 0.86); /* 5.3:1 */
-  --fg-subtle: rgb(var(--white-rgb) / 0.78); /* 4.7:1 */
-  --line: rgb(var(--white-rgb) / 0.28);
-  --line-strong: rgb(var(--white-rgb) / 0.6); /* 3.3:1 */
-  --fill: rgb(var(--white-rgb) / 0.08);
-  --fill-strong: rgb(var(--white-rgb) / 0.16);
-  --accent: var(--aqua); /* 4.9:1 */
-  --on-accent: var(--deep);
-  --cta: var(--aqua);
-  --on-cta: var(--deep);
-  --cta-hover: var(--white);
-  --on-cta-hover: var(--deep);
-  --focus: var(--aqua);
-  --alert: var(--honey); /* 5.0:1 */
-  --ghost-ink: var(--sky);
+/* Charcoal — the second dark ground, a half-step warmer */
+.surface--char {
+  --surface: var(--char);
+  --fg: var(--paper); /* 15.1:1 */
+  --fg-muted: rgb(var(--paper-rgb) / 0.74); /* 8.4:1 */
+  --fg-subtle: rgb(var(--paper-rgb) / 0.58); /* 5.8:1 */
+  --line: rgb(var(--paper-rgb) / 0.14);
+  --line-strong: rgb(var(--paper-rgb) / 0.45); /* 3.5:1 */
+  --fill: rgb(var(--paper-rgb) / 0.05);
+  --fill-strong: rgb(var(--paper-rgb) / 0.1);
+  --accent: var(--ember); /* 8.7:1 */
+  --on-accent: var(--ink);
+  --cta: var(--ember);
+  --on-cta: var(--ink);
+  --cta-hover: var(--paper);
+  --on-cta-hover: var(--ink);
+  --focus: var(--ember);
+  --alert: var(--coral); /* 7.9:1 */
+  --ghost-ink: var(--paper);
 }
 
-/* Frost and white — light editorial grounds */
-.surface--frost,
-.surface--white {
-  --surface: var(--frost);
-  --fg: var(--deep);
-  --fg-muted: rgb(var(--deep-rgb) / 0.8); /* 8.9:1 */
-  --fg-subtle: rgb(var(--deep-rgb) / 0.68); /* 5.9:1 */
-  --line: rgb(var(--deep-rgb) / 0.18);
-  --line-strong: rgb(var(--deep-rgb) / 0.55); /* 3.9:1 */
-  --fill: rgb(var(--deep-rgb) / 0.04);
-  --fill-strong: rgb(var(--deep-rgb) / 0.08);
-  --accent: var(--cobalt); /* 6.0:1 */
-  --on-accent: var(--white);
-  --cta: var(--cobalt);
-  --on-cta: var(--white);
-  --cta-hover: var(--deep);
-  --on-cta-hover: var(--white);
-  --focus: var(--cobalt);
-  --alert: var(--deep);
-  --ghost-ink: var(--cobalt);
-}
-.surface--white {
-  --surface: var(--white);
+/* Paper — light editorial ground */
+.surface--paper {
+  --surface: var(--paper);
+  --fg: var(--ink); /* 16.3:1 */
+  --fg-muted: rgb(var(--ink-rgb) / 0.74); /* 7.9:1 */
+  --fg-subtle: rgb(var(--ink-rgb) / 0.62); /* 5.2:1 */
+  --line: rgb(var(--ink-rgb) / 0.14);
+  --line-strong: rgb(var(--ink-rgb) / 0.5); /* 3.4:1 */
+  --fill: rgb(var(--ink-rgb) / 0.04);
+  --fill-strong: rgb(var(--ink-rgb) / 0.08);
+  --accent: var(--ember-deep); /* 6.3:1 */
+  --on-accent: var(--paper);
+  --cta: var(--ink);
+  --on-cta: var(--paper);
+  --cta-hover: var(--ember-deep);
+  --on-cta-hover: var(--paper);
+  --focus: var(--ember-deep);
+  --alert: var(--rust); /* 6.1:1 */
+  --ghost-ink: var(--ember-deep);
 }
 
-/* Sky — secondary ground */
-.surface--sky {
-  --surface: var(--sky);
-  --fg: var(--deep); /* 12.9:1 */
-  --fg-muted: rgb(var(--deep-rgb) / 0.8);
-  --fg-subtle: rgb(var(--deep-rgb) / 0.7);
-  --line: rgb(var(--deep-rgb) / 0.2);
-  --line-strong: rgb(var(--deep-rgb) / 0.55);
-  --fill: rgb(var(--deep-rgb) / 0.05);
-  --fill-strong: rgb(var(--deep-rgb) / 0.1);
-  --accent: var(--cobalt); /* 4.9:1 */
-  --on-accent: var(--white);
-  --cta: var(--cobalt);
-  --on-cta: var(--white);
-  --cta-hover: var(--deep);
-  --on-cta-hover: var(--white);
-  --focus: var(--deep);
-  --alert: var(--deep);
-  --ghost-ink: var(--cobalt);
+/* Ember — warm accent ground: featured plan, one service tile */
+.surface--ember {
+  --surface: var(--ember);
+  --fg: var(--ink); /* 9.4:1 */
+  --fg-muted: rgb(var(--ink-rgb) / 0.8);
+  --fg-subtle: rgb(var(--ink-rgb) / 0.75); /* 5.8:1 */
+  --line: rgb(var(--ink-rgb) / 0.2);
+  --line-strong: rgb(var(--ink-rgb) / 0.55);
+  --fill: rgb(var(--ink-rgb) / 0.06);
+  --fill-strong: rgb(var(--ink-rgb) / 0.12);
+  --accent: var(--ink);
+  --on-accent: var(--ember);
+  --cta: var(--ink);
+  --on-cta: var(--paper);
+  --cta-hover: var(--paper);
+  --on-cta-hover: var(--ink);
+  --focus: var(--ink);
+  --alert: var(--ink);
+  --ghost-ink: var(--ink);
+}
+
+/* Dusk — the cool counterpoint, one tile only */
+.surface--dusk {
+  --surface: var(--dusk);
+  --fg: var(--paper); /* 5.1:1 */
+  --fg-muted: var(--paper);
+  --fg-subtle: rgb(var(--paper-rgb) / 0.92);
+  --line: rgb(var(--paper-rgb) / 0.3);
+  --line-strong: rgb(var(--paper-rgb) / 0.7);
+  --fill: rgb(var(--paper-rgb) / 0.08);
+  --fill-strong: rgb(var(--paper-rgb) / 0.16);
+  --accent: var(--paper);
+  --on-accent: var(--dusk);
+  --cta: var(--paper);
+  --on-cta: var(--ink);
+  --cta-hover: var(--ember);
+  --on-cta-hover: var(--ink);
+  --focus: var(--paper);
+  --alert: var(--paper);
+  --ghost-ink: var(--paper);
 }

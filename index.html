@@ -8,7 +8,7 @@
       name="description"
       content="Denoise scripts, generates and edits short-form video and AI UGC ads for brands. Human-directed, delivered in days, not weeks."
     />
-    <meta name="theme-color" content="#2e37ff" />
+    <meta name="theme-color" content="#0e0c0a" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Denoise — AI content studio" />
@@ -26,7 +26,7 @@
 
     <!-- Nav -->
     <header class="nav" data-nav>
-      <a class="nav__logo" href="#top" aria-label="Denoise, back to top">Denoise</a>
+      <a class="nav__logo wordmark" href="#top" aria-label="Denoise, back to top">Denoise</a>
       <div class="nav__actions">
         <a class="btn btn--primary btn--sm nav__cta" href="#contact" data-magnetic><span>Book a call</span></a>
         <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>
@@ -36,7 +36,7 @@
       </div>
     </header>
 
-    <div class="menu surface--deep" id="menu" data-menu hidden>
+    <div class="menu surface--ink" id="menu" data-menu hidden>
       <nav aria-label="Main">
         <ul class="menu__list" role="list">
           <li><a class="menu__link" href="#work">Work</a></li>
@@ -52,17 +52,34 @@
     </div>
 
     <main id="main">
-      <!-- Hero -->
-      <section class="hero surface--cobalt" id="top" aria-labelledby="hero-title">
-        <div class="container hero__inner">
-          <p class="hero__prompt" aria-hidden="true">
-            <span class="hero__prompt-label chip chip--outline">Prompt</span>
-            <span class="hero__prompt-text caret" data-hero-prompt="a brand film nobody has to shoot, 9:16, ready by Friday"></span>
-          </p>
+      <!-- Hero: showreel of the real case clips -->
+      <section class="hero surface--ink" id="top" aria-labelledby="hero-title">
+        <div class="hero__reel" data-reel>
+          <canvas class="hero__ambient" width="36" height="64" aria-hidden="true" data-reel-ambient></canvas>
+          <div class="hero__frame">
+            <video class="hero__video" muted playsinline preload="auto" aria-hidden="true" data-reel-video></video>
+            <video class="hero__video" muted playsinline preload="none" aria-hidden="true" data-reel-video></video>
+            <div class="hero__noise" aria-hidden="true" data-reel-noise></div>
+          </div>
+          <div class="hero__shade" aria-hidden="true"></div>
+          <div class="hero__caption">
+            <div class="hero__progress" aria-hidden="true" data-reel-progress></div>
+            <p class="hero__prompt" aria-hidden="true">
+              <span class="chip chip--outline">Prompt</span>
+              <span class="caret" data-reel-prompt></span>
+            </p>
+            <p class="hero__meta">
+              <span data-reel-client></span>
+              <span class="hero__count" aria-hidden="true" data-reel-count></span>
+              <button class="hero__toggle" type="button" aria-pressed="false" aria-label="Pause the showreel" data-reel-toggle></button>
+            </p>
+          </div>
+        </div>
 
+        <div class="container hero__inner">
           <h1 class="hero__title" id="hero-title">
-            <span class="hero__wordmark display" data-wordmark>Denoise</span>
-            <span class="hero__claim display" data-split>AI-made content, human-directed.</span>
+            <span class="hero__wordmark wordmark" data-wordmark>Denoise</span>
+            <span class="hero__claim display" data-split>AI-made content, <em>human-directed.</em></span>
           </h1>
 
           <div class="hero__body">
@@ -74,13 +91,11 @@
               <a class="btn" href="#work" data-magnetic><span>See the work</span></a>
             </div>
           </div>
-
-          <div class="hero__phones" data-phones="hero"></div>
         </div>
       </section>
 
       <!-- Marquee -->
-      <div class="marquee surface--sky" aria-label="Platforms and clients">
+      <div class="marquee surface--ink" aria-label="Platforms and clients">
         <div class="marquee__track" data-marquee>
           <ul class="marquee__list" role="list">
             <li>Instagram Reels</li><li>TikTok</li><li>YouTube Shorts</li><li>Meta Ads</li>
@@ -94,8 +109,8 @@
       </div>
 
       <!-- Selected work -->
-      <section class="work section surface--deep" id="work" aria-labelledby="work-title">
-        <p class="ghost display" aria-hidden="true" data-ghost>Work</p>
+      <section class="work section surface--ink" id="work" aria-labelledby="work-title">
+        <p class="ghost wordmark" aria-hidden="true" data-ghost>Work</p>
         <div class="container">
           <header class="section-head">
             <h2 class="display h-section" id="work-title" data-split>Selected work</h2>
@@ -106,8 +121,8 @@
       </section>
 
       <!-- Deep dive -->
-      <section class="dive section surface--frost" id="case-lumea" aria-labelledby="dive-title">
-        <p class="ghost display" aria-hidden="true" data-ghost>Lumea</p>
+      <section class="dive section surface--paper" id="case-lumea" aria-labelledby="dive-title">
+        <p class="ghost wordmark" aria-hidden="true" data-ghost>Lumea</p>
         <div class="container">
           <header class="section-head">
             <h2 class="display h-section" id="dive-title" data-split>How the Lumea launch was made</h2>
@@ -164,10 +179,10 @@
       </section>
 
       <!-- AI vs traditional -->
-      <section class="versus section surface--deep" aria-labelledby="versus-title">
+      <section class="versus section surface--char" aria-labelledby="versus-title">
         <div class="container">
           <header class="section-head">
-            <h2 class="display h-section" id="versus-title" data-split>A shoot takes weeks. We take days.</h2>
+            <h2 class="display h-section" id="versus-title" data-split>A shoot takes weeks. <em>We take days.</em></h2>
             <p class="lede">Same goal, a very different budget line.</p>
           </header>
 
@@ -203,7 +218,7 @@
       </section>
 
       <!-- Services -->
-      <section class="services section surface--frost" id="services" aria-labelledby="services-title">
+      <section class="services section surface--ink" id="services" aria-labelledby="services-title">
         <div class="container">
           <header class="section-head">
             <h2 class="display h-section" id="services-title" data-split>What we make</h2>
@@ -211,27 +226,27 @@
           </header>
 
           <ul class="services__grid" role="list" data-stagger>
-            <li class="tile tile--lg surface--cobalt" data-denoise>
+            <li class="tile tile--lg surface--ember" data-denoise>
               <h3 class="tile__title">AI UGC ads</h3>
               <p>Creator-style ads with generated talent, scripted from your reviews and tested in batches of ten.</p>
               <p class="tile__meta label">Usually 5 days</p>
             </li>
-            <li class="tile tile--lg surface--sky" data-denoise>
+            <li class="tile tile--lg surface--dusk" data-denoise>
               <h3 class="tile__title">AI avatars and spokespeople</h3>
               <p>A consistent on-screen face for your brand that speaks twelve languages and never needs a reshoot.</p>
               <p class="tile__meta label">Usually 7 days</p>
             </li>
-            <li class="tile surface--white" data-denoise>
+            <li class="tile surface--char" data-denoise>
               <h3 class="tile__title">Product visuals</h3>
               <p>Hero shots and motion loops of your product in places you'd never fly a crew to.</p>
               <p class="tile__meta label">Usually 3 days</p>
             </li>
-            <li class="tile surface--deep" data-denoise>
+            <li class="tile surface--paper" data-denoise>
               <h3 class="tile__title">Motion and edits</h3>
               <p>Captions, pacing, sound design and the cut that holds attention past second three.</p>
               <p class="tile__meta label">Usually 2 days</p>
             </li>
-            <li class="tile surface--white" data-denoise>
+            <li class="tile surface--char" data-denoise>
               <h3 class="tile__title">Content strategy</h3>
               <p>What to post, where, and which variant to scale, read from your own numbers every week.</p>
               <p class="tile__meta label">Ongoing</p>
@@ -241,7 +256,7 @@
       </section>
 
       <!-- Process -->
-      <section class="process section surface--cobalt" id="process" aria-labelledby="process-title">
+      <section class="process section surface--char" id="process" aria-labelledby="process-title">
         <div class="container">
           <header class="section-head">
             <h2 class="display h-section" id="process-title" data-split>From brief to feed in four steps</h2>
@@ -278,7 +293,7 @@
       </section>
 
       <!-- Results -->
-      <section class="results section surface--frost" aria-labelledby="results-title">
+      <section class="results section surface--paper" aria-labelledby="results-title">
         <div class="container">
           <header class="section-head">
             <h2 class="display h-section" id="results-title" data-split>What clients get back</h2>
@@ -317,7 +332,7 @@
       </section>
 
       <!-- Packages -->
-      <section class="pricing section surface--deep" id="pricing" aria-labelledby="pricing-title">
+      <section class="pricing section surface--ink" id="pricing" aria-labelledby="pricing-title">
         <div class="container">
           <header class="section-head">
             <h2 class="display h-section" id="pricing-title" data-split>Packages</h2>
@@ -337,7 +352,7 @@
               </ul>
               <a class="btn" href="#contact" data-magnetic><span>Start with Test</span></a>
             </li>
-            <li class="plan plan--featured surface--sky">
+            <li class="plan plan--featured surface--ember">
               <h3 class="plan__name">Launch</h3>
               <p class="plan__price display">$2,800</p>
               <p class="plan__fit">For a product launch across platforms.</p>
@@ -367,7 +382,7 @@
       </section>
 
       <!-- FAQ -->
-      <section class="faq section surface--frost" aria-labelledby="faq-title">
+      <section class="faq section surface--paper" aria-labelledby="faq-title">
         <div class="container faq__inner">
           <h2 class="display h-section" id="faq-title" data-split>Questions brands ask first</h2>
           <div class="faq__list" data-faq>
@@ -400,10 +415,10 @@
       </section>
 
       <!-- Contact -->
-      <section class="contact section surface--cobalt" id="contact" aria-labelledby="contact-title">
+      <section class="contact section surface--char" id="contact" aria-labelledby="contact-title">
         <div class="container contact__inner">
           <div class="contact__intro">
-            <h2 class="display h-section" id="contact-title" data-split>Let's make something people stop for.</h2>
+            <h2 class="display h-section" id="contact-title" data-split>Let's make something people <em>stop for.</em></h2>
             <p class="lede">Tell us about the product. We reply within one working day with ideas and a quote.</p>
             <p class="contact__alt">
               Prefer to talk? <a class="link" href="mailto:hello@denoise.studio?subject=Book%20a%20call">Book a 20-minute call</a>
@@ -447,7 +462,7 @@
       </section>
     </main>
 
-    <footer class="footer surface--deep">
+    <footer class="footer surface--ink">
       <div class="container footer__inner">
         <ul class="footer__links" role="list">
           <li><a class="link" href="mailto:hello@denoise.studio">hello@denoise.studio</a></li>
@@ -457,7 +472,7 @@
         </ul>
         <p class="footer__copy">© 2026 Denoise. Directed by people, generated by machines.</p>
       </div>
-      <p class="footer__wordmark display" aria-hidden="true">Denoise</p>
+      <p class="footer__wordmark wordmark" aria-hidden="true">Denoise</p>
     </footer>
 
     <div class="cursor" aria-hidden="true" data-cursor><span class="cursor__label"></span></div>

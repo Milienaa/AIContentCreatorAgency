@@ -1,26 +1,5 @@
 const media = (name) => ({ src: `/media/${name}.mp4`, poster: `/media/${name}.webp` });
 
-export const HERO_CLIPS = [
-  {
-    id: 'hero-ink',
-    prompt: 'cobalt and aqua ink blooming in water, macro, slow motion',
-    label: 'Generated clip: cobalt and aqua ink blooming in water',
-    ...media('hero-ink'),
-  },
-  {
-    id: 'hero-perfume',
-    prompt: 'glass perfume bottle on sand, golden hour, soft wind',
-    label: 'Generated clip: perfume bottle on sand at golden hour',
-    ...media('hero-perfume'),
-  },
-  {
-    id: 'hero-dancer',
-    prompt: 'dancer spinning under neon light, 50mm, film grain',
-    label: 'Generated clip: dancer spinning under neon light',
-    ...media('hero-dancer'),
-  },
-];
-
 export const CASES = [
   // Ordered as a cool-to-warm gradient, evening to morning: the list ends on
   // Lumea, the brightest clip, which leads into the Lumea deep dive below.
@@ -113,3 +92,10 @@ export const CASES = [
 
 /** The case the deep-dive section tells in full. */
 export const FLAGSHIP_ID = 'lumea';
+
+/**
+ * Cut order for the hero showreel. Opens on Pulse, whose particle storm
+ * clearing into silence is the brand name made literal; then alternates
+ * warm and cool so neighbouring cuts never blur together.
+ */
+export const REEL_ORDER = ['pulse', 'lumea', 'northline', 'oro', 'kinetic'];

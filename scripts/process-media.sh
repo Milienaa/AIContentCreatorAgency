@@ -9,7 +9,7 @@ set -euo pipefail
 OUT="public/media"
 mkdir -p "$OUT" "$OUT/storyboard"
 
-CLIPS=(hero-ink hero-perfume hero-dancer case-lumea case-northline case-oro case-pulse case-kinetic)
+CLIPS=(case-lumea case-northline case-oro case-pulse case-kinetic)
 
 noise() {
   ffmpeg -y -loglevel error -f lavfi -i "color=c=gray:s=256x256:d=1" \
@@ -18,8 +18,7 @@ noise() {
 }
 
 placeholders() {
-  local colors=("0x2B2BFF:0xB69CFF" "0xFFD23F:0x2B2BFF" "0x14123A:0xB69CFF" "0xB69CFF:0x7DF0C8"
-                "0x14123A:0x2B2BFF" "0xFFD23F:0x14123A" "0x2B2BFF:0x7DF0C8" "0x14123A:0xFFD23F")
+  local colors=("0xF0A35E:0x0E0C0A" "0x3A658F:0x0E0C0A" "0x8A3F12:0x1A1612" "0x0E0C0A:0x3A658F" "0x1A1612:0xF0A35E")
   for i in "${!CLIPS[@]}"; do
     local c0="${colors[$i]%%:*}" c1="${colors[$i]##*:}"
     ffmpeg -y -loglevel error -f lavfi \

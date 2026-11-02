@@ -5,9 +5,9 @@ import { prefersReducedMotion, isTouch } from '../motion/prefs.js';
 /**
  * Wires every [data-phone] on the page: one shared playback manager,
  * one IntersectionObserver that calls enter()/leave().
- * Returns the players map so the hero intro can trigger its phones directly.
+ * Returns the players map.
  */
-export function initPhones({ observeHero = true } = {}) {
+export function initPhones() {
   const players = new Map();
   const manager = createPlaybackManager({
     max: isTouch() ? 2 : 3,
@@ -31,10 +31,7 @@ export function initPhones({ observeHero = true } = {}) {
     { threshold: 0.4 },
   );
 
-  players.forEach((player, id) => {
-    if (!observeHero && id.startsWith('hero-')) return;
-    io.observe(player.root);
-  });
+  players.forEach((player) => io.observe(player.root));
 
-  return { players, observe: (root) => io.observe(root) };
+  return { players };
 }

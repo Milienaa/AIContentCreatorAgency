@@ -1,5 +1,7 @@
 import '@fontsource-variable/anybody/standard.css';
 import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource-variable/newsreader/opsz-italic.css';
+import '@fontsource-variable/jetbrains-mono/wght.css';
 import './styles/tokens.css';
 import './styles/base.css';
 import './styles/phone.css';
@@ -9,8 +11,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 
-import { CASES, HERO_CLIPS } from './data/cases.js';
-import { phoneMarkup } from './phone/render.js';
+import { CASES, REEL_ORDER } from './data/cases.js';
 import { caseMarkup } from './sections/work.js';
 import { initPhones } from './phone/phones.js';
 import { initMenu } from './ui/menu.js';
@@ -25,15 +26,19 @@ import { initSmoothScroll } from './motion/smooth-scroll.js';
 import { initReveals } from './motion/reveals.js';
 import { initParallax } from './motion/parallax.js';
 import { playHeroIntro } from './motion/hero-intro.js';
+import { createHeroReel } from './motion/hero-reel.js';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-document.querySelector('[data-phones="hero"]').innerHTML = HERO_CLIPS.map(phoneMarkup).join('');
 document.querySelector('[data-cases]').innerHTML = CASES.map(caseMarkup).join('');
 
 const reducedMotion = prefersReducedMotion();
-const { players, observe } = initPhones({ observeHero: false });
-const heroPlayers = HERO_CLIPS.map((c) => players.get(c.id));
+initPhones();
+const reel = createHeroReel(
+  document.querySelector('[data-reel]'),
+  REEL_ORDER.map((id) => CASES.find((c) => c.id === id)),
+  { reducedMotion },
+);
 
 const lenis = initSmoothScroll();
 initNav();
@@ -43,12 +48,7 @@ initForm();
 initBeforeAfter();
 
 const start = () => {
-  playHeroIntro({
-    heroPlayers,
-    reducedMotion,
-    // After the intro, hero phones follow the same in/out-of-view rules as the rest
-    onDone: () => heroPlayers.forEach((p) => observe(p.root)),
-  });
+  playHeroIntro({ reel, reducedMotion });
 
   if (reducedMotion) return;
   initReveals();

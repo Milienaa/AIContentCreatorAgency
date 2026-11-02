@@ -29,6 +29,19 @@ body {
   overflow-x: clip;
 }
 
+/* Film grain over the whole page: the footage has it, so the page does too.
+   One static layer, no animation, never intercepts input. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grain);
+  background: url('/media/noise.webp') 0 0 / 220px 220px repeat;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
 img,
 video,
 svg {
@@ -103,7 +116,8 @@ button {
   border-radius: var(--radius-pill);
   background: var(--cta);
   color: var(--on-cta);
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
+  font-size: var(--text-ui);
   transform: translateY(-200%);
 }
 .skip-link:focus {
@@ -111,11 +125,11 @@ button {
 }
 
 /* ───────── Surfaces: paint the ground, roles come from tokens.css ───────── */
-.surface--deep,
-.surface--cobalt,
-.surface--frost,
-.surface--white,
-.surface--sky {
+.surface--ink,
+.surface--char,
+.surface--paper,
+.surface--ember,
+.surface--dusk {
   background: var(--surface);
   color: var(--fg);
 }
@@ -123,8 +137,8 @@ button {
 /* ───────── Type ───────── */
 .display {
   font-family: var(--font-display);
-  font-weight: var(--weight-heavy);
-  font-stretch: var(--wdth-normal);
+  font-weight: var(--weight-display);
+  font-optical-sizing: auto;
   line-height: var(--lh-tight);
   letter-spacing: var(--track-tight);
   text-wrap: balance;
@@ -133,13 +147,27 @@ button {
 .h-section {
   font-size: var(--display-l);
 }
+/* Italic carries the "human" half of a headline */
+.display em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* Wordmark family: the logo and its ghosts only */
+.wordmark {
+  font-family: var(--font-wordmark);
+  font-weight: var(--weight-black);
+  font-stretch: var(--wdth-ultra);
+  line-height: var(--lh-wordmark);
+  letter-spacing: var(--track-wordmark);
+}
 
 .label {
-  font-family: var(--font-display);
-  font-size: var(--step--1);
+  font-family: var(--font-ui);
+  font-size: var(--text-ui-sm);
   font-weight: var(--weight-medium);
-  font-stretch: var(--wdth-wide);
   letter-spacing: var(--track-label);
+  text-transform: uppercase;
 }
 
 .lede {
@@ -212,10 +240,11 @@ button {
   border-radius: var(--radius-pill);
   background: var(--btn-bg);
   color: var(--btn-fg);
-  font-family: var(--font-display);
-  font-size: var(--step-0);
-  font-weight: var(--weight-semibold);
-  font-stretch: var(--wdth-normal);
+  font-family: var(--font-ui);
+  font-size: var(--text-ui);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
   line-height: 1;
   white-space: nowrap;
   text-decoration: none;
@@ -262,9 +291,11 @@ button {
   align-items: center;
   padding: 0.25em 0.75em;
   border-radius: var(--radius-pill);
-  font-family: var(--font-display);
-  font-size: var(--step--1);
+  font-family: var(--font-ui);
+  font-size: var(--text-ui-sm);
   font-weight: var(--weight-medium);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
   line-height: var(--lh-ui);
   white-space: nowrap;
 }
@@ -272,8 +303,8 @@ button {
   border: 1px solid var(--line-strong);
 }
 .chip--solid {
-  background: var(--deep);
-  color: var(--white);
+  background: var(--ink);
+  color: var(--paper);
 }
 
 /* ───────── Text links: draw-in underline ───────── */
