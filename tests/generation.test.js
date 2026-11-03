@@ -7,11 +7,11 @@ describe('generationProgress', () => {
   });
 
   it('is paced by the minimum duration when buffering is ahead', () => {
-    expect(generationProgress({ bufferedRatio: 1, elapsedMs: 600 })).toBe(50);
+    expect(generationProgress({ bufferedRatio: 1, elapsedMs: 350 })).toBe(50);
   });
 
   it('reaches 100 once both buffering and minimum time are done', () => {
-    expect(generationProgress({ bufferedRatio: 1, elapsedMs: 1200 })).toBe(100);
+    expect(generationProgress({ bufferedRatio: 1, elapsedMs: 700 })).toBe(100);
   });
 
   it('never runs ahead of the real buffer', () => {

@@ -25,7 +25,10 @@ export class PhonePlayer {
     this.ready = false;
     this.timers = [];
 
-    this.video.addEventListener('canplaythrough', () => (this.ready = true));
+    // Enough data to start playing is enough: the loop keeps buffering while it plays.
+    const markReady = () => (this.ready = true);
+    this.video.addEventListener('canplay', markReady);
+    this.video.addEventListener('canplaythrough', markReady);
     this.video.addEventListener('error', () => this.state === 'generating' && this.fail());
     this.toggleEl.addEventListener('click', () => this.toggle());
   }
@@ -125,7 +128,7 @@ export class PhonePlayer {
   }
 
   bufferedRatio() {
-    if (this.ready || this.video.readyState >= 4) return 1;
+    if (this.ready || this.video.readyState >= 3) return 1;
     const { buffered, duration } = this.video;
     if (!buffered || !buffered.length || !duration) return 0;
     return buffered.end(buffered.length - 1) / duration;
