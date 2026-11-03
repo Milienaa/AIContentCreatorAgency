@@ -1,16 +1,11 @@
-/** Nav turns solid after the first screen fold and hides while scrolling down. */
+/** Nav stays pinned to the top and turns solid after the first screen fold. */
 export function initNav() {
   const nav = document.querySelector('[data-nav]');
   if (!nav) return;
-  let lastY = window.scrollY;
   let ticking = false;
 
   const update = () => {
-    const y = window.scrollY;
-    nav.dataset.solid = String(y > 60);
-    const menuOpen = document.querySelector('[data-menu-toggle]')?.getAttribute('aria-expanded') === 'true';
-    nav.dataset.hidden = String(!menuOpen && y > 400 && y > lastY + 2);
-    if (Math.abs(y - lastY) > 2) lastY = y;
+    nav.dataset.solid = String(window.scrollY > 60);
     ticking = false;
   };
 
@@ -24,6 +19,5 @@ export function initNav() {
     },
     { passive: true },
   );
-  nav.addEventListener('focusin', () => (nav.dataset.hidden = 'false'));
   update();
 }

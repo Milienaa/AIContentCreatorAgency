@@ -61,12 +61,7 @@
   padding: var(--space-xs) var(--gutter);
   padding-top: max(var(--space-xs), env(safe-area-inset-top));
   color: var(--paper);
-  transition:
-    transform var(--dur-slow) var(--ease-out),
-    background-color var(--dur-base);
-}
-.nav[data-hidden='true'] {
-  transform: translateY(-110%);
+  transition: background-color var(--dur-base);
 }
 .nav[data-solid='true'] {
   background: rgb(var(--ink-rgb) / 0.82);
