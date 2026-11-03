@@ -53,31 +53,36 @@
   transition: transform var(--dur-slow) var(--ease-out);
 }
 
-/* Noise veil — a light grain over the poster that fades as generation
-   progresses. Kept translucent and slow so it hints at "generating"
-   without flickering over the frame. Opacity + transform only. */
+/* Noise veil — the starting state. Until a phone generates, its screen is
+   static over the poster; when generation starts the static clears into
+   the clip in one second. The clearing is timed, not tied to buffering: a
+   slow network keeps the ring and the percentage running, not the noise.
+   Opacity + transform only. */
 .phone__noise {
-  --noise-max: 0.32;
   position: absolute;
   inset: -10%;
   background: url('/media/noise.webp') 0 0 / 180px 180px repeat;
-  mix-blend-mode: normal;
-  opacity: var(--noise-max);
+  opacity: 0.6;
   animation: phone-noise 1.2s steps(4) infinite;
   pointer-events: none;
   z-index: 1;
 }
 
 [data-state='generating'] .phone__noise {
-  opacity: calc(var(--noise-max) * (1 - var(--gen)));
-  transition: opacity 0.2s linear;
+  animation:
+    phone-noise-clear 1s var(--ease-out) forwards,
+    phone-noise 1s steps(5);
 }
 
 [data-state='rendered'] .phone__noise,
 [data-state='paused'] .phone__noise {
   opacity: 0;
   animation: none;
-  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+@keyframes phone-noise-clear {
+  from { opacity: 0.6; }
+  to { opacity: 0; }
 }
 
 @keyframes phone-noise {
