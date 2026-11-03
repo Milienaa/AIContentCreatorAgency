@@ -1,59 +1,10 @@
 const media = (name) => ({ src: `/media/${name}.mp4`, poster: `/media/${name}.webp` });
 
 export const CASES = [
-  // Ordered as a cool-to-warm gradient, evening to morning: the list ends on
-  // Lumea, the brightest clip, which leads into the Lumea deep dive below.
-  {
-    id: 'northline',
-    client: 'Northline',
-    category: 'Fashion',
-    brief: 'Twelve ad variants for a winter drop across four markets.',
-    description:
-      'One walk, four cities. We generated a single hero look on a blue-hour street, then changed the street, the weather and the voiceover language for each market instead of flying a crew to each one. The Oslo cut had the highest click-through.',
-    prompt: 'model in wool coat walking at blue hour, slow motion',
-    metrics: [
-      { value: '12', label: 'ad variants' },
-      { value: '2.8%', label: 'click-through rate' },
-      { value: '9 days', label: 'brief to launch' },
-    ],
-    tools: ['Kling', 'Midjourney', 'ElevenLabs'],
-    label: 'Northline winter drop ad',
-    ...media('case-northline'),
-  },
-  {
-    id: 'pulse',
-    client: 'Pulse Audio',
-    category: 'Tech',
-    brief: 'Show noise cancelling without a single spec sheet.',
-    description:
-      'Noise cancelling is invisible, so we made the noise visible: a storm of particles that clears the moment the earbuds switch on. Silence became the product shot. The ad ran with no numbers on screen and halved the cost per sale.',
-    prompt: 'earbuds floating in a dark studio, rim light, slow orbit',
-    metrics: [
-      { value: '4.6%', label: 'click-through rate' },
-      { value: '−41%', label: 'cost per acquisition' },
-      { value: '7 days', label: 'brief to launch' },
-    ],
-    tools: ['Veo', 'Midjourney', 'ElevenLabs'],
-    label: 'Pulse Audio earbuds ad',
-    ...media('case-pulse'),
-  },
-  {
-    id: 'kinetic',
-    client: 'Kinetic Club',
-    category: 'Fitness',
-    brief: 'Fill January trial slots for a new boxing studio.',
-    description:
-      'New Year resolutions fade by week two, so we sold the feeling of the first morning instead. A boxer, a heavy bag and dawn light, cut into six-second ads that led straight to booking a free trial.',
-    prompt: 'boxer training at dawn, dust in the light, handheld',
-    metrics: [
-      { value: '860K', label: 'views' },
-      { value: '1,900', label: 'trial sign-ups' },
-      { value: '10 days', label: 'brief to launch' },
-    ],
-    tools: ['Kling', 'DaVinci Resolve'],
-    label: 'Kinetic Club boxing studio reel',
-    ...media('case-kinetic'),
-  },
+  // Dark to light, one warm palette: the walnut café and the charcoal gym,
+  // then Sable's cream lamplight, Hush's sand and Lumea's peach morning last,
+  // which leads into the Lumea deep dive below. The list opens on a calm
+  // product shot rather than the boxing clip.
   {
     id: 'oro',
     client: 'Oro Coffee',
@@ -70,6 +21,57 @@ export const CASES = [
     tools: ['PixVerse', 'DaVinci Resolve'],
     label: 'Oro Coffee espresso reel',
     ...media('case-oro'),
+  },
+  {
+    id: 'kinetic',
+    client: 'Kinetic Club',
+    category: 'Fitness',
+    brief: 'Fill January trial slots for a new boxing studio.',
+    description:
+      'New Year resolutions fade by week two, so we sold the feeling of the first morning instead. A boxer, a heavy bag and dawn light, cut into six-second ads that led straight to booking a free trial.',
+    prompt: 'boxer at dawn, breath in the backlight, handheld',
+    metrics: [
+      { value: '860K', label: 'views' },
+      { value: '1,900', label: 'trial sign-ups' },
+      { value: '10 days', label: 'brief to launch' },
+    ],
+    tools: ['Kling', 'DaVinci Resolve'],
+    label: 'Kinetic Club boxing studio reel',
+    ...media('case-kinetic'),
+  },
+  {
+    id: 'sable',
+    client: 'Sable',
+    category: 'Fashion',
+    brief: 'Sell a heavy knit in late August, when nobody wants a sweater.',
+    description:
+      'Nobody shops for wool in a heatwave, so we sold the first cool evening instead: lamplight on a terracotta wall, a breeze through a linen curtain, a sweater pulled close. One look, twelve cuts, each with a different first second. Pre-orders sold out before September.',
+    prompt: 'woman in oat knit sweater by an open window, lamplight, linen curtain',
+    metrics: [
+      { value: '12', label: 'ad variants' },
+      { value: '2.8%', label: 'click-through rate' },
+      { value: '9 days', label: 'brief to launch' },
+    ],
+    tools: ['Kling', 'Midjourney', 'DaVinci Resolve'],
+    label: 'Sable knitwear autumn drop ad',
+    ...media('case-sable'),
+  },
+  {
+    id: 'hush',
+    client: 'Hush Audio',
+    category: 'Tech',
+    brief: 'Show noise cancelling without a single spec sheet.',
+    description:
+      'Noise cancelling is invisible, so we made the noise visible: wind-blown sand burying a pair of headphones on a dune. They switch on, the wind dies and the sand settles. Silence became the product shot. The ad ran with no numbers on screen and halved the cost per sale.',
+    prompt: 'headphones on a sand dune, the wind dies down, golden hour',
+    metrics: [
+      { value: '4.6%', label: 'click-through rate' },
+      { value: '−41%', label: 'cost per acquisition' },
+      { value: '7 days', label: 'brief to launch' },
+    ],
+    tools: ['Veo', 'Midjourney', 'DaVinci Resolve'],
+    label: 'Hush Audio headphones ad',
+    ...media('case-hush'),
   },
   {
     id: 'lumea',
@@ -94,8 +96,12 @@ export const CASES = [
 export const FLAGSHIP_ID = 'lumea';
 
 /**
- * Cut order for the hero showreel. Opens on Pulse, whose particle storm
- * clearing into silence is the brand name made literal; then alternates
- * warm and cool so neighbouring cuts never blur together.
+ * Cut order for the hero showreel. Opens on Hush, whose sandstorm settling
+ * into silence is the brand name made literal. Every cut flips light ↔ dark
+ * so neighbouring clips never blur together. Boxing is the loudest clip, so
+ * it comes last, well after the calm opening, and its dark gym cuts back to
+ * Hush's bright sand when the loop restarts:
+ *   Hush (sand) → Oro (walnut) → Sable (cream lamplight) → Lumea (peach)
+ *   → Kinetic (charcoal) → Hush …
  */
-export const REEL_ORDER = ['pulse', 'lumea', 'northline', 'oro', 'kinetic'];
+export const REEL_ORDER = ['hush', 'oro', 'sable', 'lumea', 'kinetic'];

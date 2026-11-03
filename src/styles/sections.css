@@ -269,6 +269,7 @@
   inset: calc(var(--nav-offset) - var(--space-s)) var(--gutter) auto;
   z-index: 2;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-2xs);
   font-family: var(--font-ui);
   font-size: var(--text-ui-sm);
@@ -325,9 +326,17 @@
   letter-spacing: var(--track-label);
   text-transform: uppercase;
 }
+/* One line, whatever the frame width: a long client name truncates */
+.hero__meta > span:first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .hero__count {
   margin-left: auto;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 .hero__toggle {
   display: inline-grid;
@@ -400,9 +409,28 @@
   gap: var(--space-xs);
 }
 
+/* Proof strip: the three numbers a buyer checks first. Desktop only; the
+   phone hero is already full and the same numbers sit in Results below. */
+.hero__proof {
+  display: none;
+}
+
+/* Desktop: two zones that never touch. The text column on the left, the clip
+   as a framed 9:16 "screen" on the right, inside the container edges, below
+   the nav and centred in what is left of the viewport. The rest of the page
+   width is the same clip blurred (ambient), so the colour of each case
+   floods the hero without upscaling the footage. */
 @media (min-width: 1024px) {
   .hero {
-    padding-bottom: var(--space-2xl);
+    --hero-pb: var(--space-2xl);
+    --frame-gap: var(--space-2xl);
+    --frame-w: min(calc((100svh - var(--nav-offset) - var(--hero-pb)) * 9 / 16), 34vw);
+    --frame-h: calc(var(--frame-w) * 16 / 9);
+    --frame-top: calc(var(--nav-offset) + (100svh - var(--nav-offset) - var(--hero-pb) - var(--frame-h)) / 2);
+    /* the container's content edge, also past --container-max */
+    --frame-right: max(var(--gutter), calc((100vw - var(--container-max)) / 2 + var(--gutter)));
+    align-items: center;
+    padding-bottom: var(--hero-pb);
   }
   .hero__ambient {
     display: block;
@@ -413,47 +441,81 @@
     filter: blur(48px) saturate(1.25) brightness(0.55);
   }
   .hero__frame {
-    inset: 0 var(--gutter) 0 auto;
-    aspect-ratio: 9 / 16;
-    width: auto;
-    max-width: 40vw;
+    inset: var(--frame-top) var(--frame-right) auto auto;
+    width: var(--frame-w);
+    height: var(--frame-h);
+    border-radius: var(--radius-m);
     box-shadow:
-      0 0 0 1px rgb(var(--paper-rgb) / 0.08),
+      0 0 0 1px rgb(var(--paper-rgb) / 0.1),
       0 40px 120px rgb(0 0 0 / 0.6);
   }
+  /* Darkens only the text side; the clip itself stays untouched */
   .hero__shade {
-    background:
-      linear-gradient(90deg, rgb(var(--ink-rgb) / 0.9) 0%, rgb(var(--ink-rgb) / 0.55) 42%, rgb(var(--ink-rgb) / 0) 64%),
-      linear-gradient(to top, rgb(var(--ink-rgb) / 0.85) 0%, rgb(var(--ink-rgb) / 0) 45%, rgb(var(--ink-rgb) / 0) 80%, rgb(var(--ink-rgb) / 0.5) 100%);
+    background: linear-gradient(
+      90deg,
+      rgb(var(--ink-rgb) / 0.88) 0%,
+      rgb(var(--ink-rgb) / 0.6) 40%,
+      rgb(var(--ink-rgb) / 0) calc(100% - var(--frame-right) - var(--frame-w) - 2rem)
+    );
   }
-  /* The caption sits on the clip it describes */
+  /* The caption sits on top of the clip it describes, like on the phone */
   .hero__caption {
-    inset: auto calc(var(--gutter) + var(--space-m)) var(--space-m) auto;
-    width: calc(min(100svh * 9 / 16, 40vw) - 2 * var(--space-m));
+    inset: calc(var(--frame-top) + var(--space-m)) calc(var(--frame-right) + var(--space-m)) auto auto;
+    width: calc(var(--frame-w) - 2 * var(--space-m));
   }
   .hero__caption::before {
-    inset: -7rem calc(var(--space-m) * -1) calc(var(--space-m) * -1);
-    background: linear-gradient(to top, rgb(var(--ink-rgb) / 0.88) 35%, rgb(var(--ink-rgb) / 0));
+    inset: calc(var(--space-m) * -1) calc(var(--space-m) * -1) -4rem;
+    border-radius: var(--radius-m) var(--radius-m) 0 0;
+    background: linear-gradient(to bottom, rgb(var(--ink-rgb) / 0.8) 35%, rgb(var(--ink-rgb) / 0));
   }
+  /* Text column ends a clear gap before the frame */
   .hero__inner {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--grid-gap);
+    padding-right: calc(var(--gutter) + var(--frame-w) + var(--frame-gap));
     row-gap: var(--space-xl);
   }
-  .hero__title {
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--grid-gap);
-  }
+  /* Type scale: wordmark → claim → lede step down ~2× each, so the brand,
+     the promise and the detail read in that order. On short laptop screens
+     the wordmark also yields to the height so it clears the nav. */
   .hero__wordmark {
-    grid-column: 1 / -1;
+    font-size: min(calc(100cqi / 6.75), 14svh);
   }
   .hero__claim {
-    grid-column: 1 / 8;
-    font-size: var(--step-5);
+    max-width: 16ch;
+    font-size: var(--step-4);
   }
   .hero__body {
-    grid-column: 1 / 6;
+    gap: var(--space-l);
+  }
+  .hero__lede {
+    max-width: 32ch;
+  }
+  .hero__proof {
+    display: flex;
+    gap: var(--space-xl);
+    margin: 0;
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--line);
+  }
+  .hero__proof div {
+    display: grid;
+    gap: var(--space-3xs);
+  }
+  .hero__proof dt {
+    order: 1;
+    font-family: var(--font-ui);
+    font-size: var(--text-ui-sm);
+    letter-spacing: var(--track-label);
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+  }
+  .hero__proof dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--step-2);
+    line-height: 1;
+    font-variant-numeric: lining-nums;
+    color: var(--fg);
   }
 }
 

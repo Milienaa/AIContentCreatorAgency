@@ -12,8 +12,9 @@
   /* ── 1. Primitives ─────────────────────────────────────────────────── */
 
   /* Color — "Darkroom": pulled from the case footage itself.
-     Ink and charcoal from the Pulse studio black, bone paper from Lumea's wall,
-     ember from the serum and the crema, dusk from Northline's blue hour.
+     Ink and charcoal from Oro's dark café, bone paper from Lumea's wall,
+     ember from the serum and the crema, dusk from the muted sky behind
+     Sable's window.
      The footage stays the most saturated thing on the page. */
   --ink: #0e0c0a; /* page ground, hero, work, pricing */
   --char: #1a1612; /* warm charcoal: second dark ground */
